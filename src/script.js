@@ -3,9 +3,10 @@ const quoteBox = document.getElementById("quote");
 const header = document.getElementById("header");
 const pieCanvas = document.getElementById("pie");
 const ctx = pieCanvas.getContext("2d");
-const taskLine1 = document.getElementById("taskLine1");
-const taskLine2 = document.getElementById("taskLine2");
-const taskLine3 = document.getElementById("taskLine3");
+const title = document.getElementById("titleCard");
+const tasksContainer = document.getElementById("tasksContainer");
+const extraContainer = document.getElementById("extra-accomplishments");
+
 document.getElementById("card").classList.remove("hidden");
 document.getElementById("downloadBtn").classList.remove("hidden");
 
@@ -40,21 +41,34 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const day = parseInt(document.getElementById("day").value);
-  const task1 = document.getElementById("task1").value;
-  const task2 = document.getElementById("task2").value;
-  const task3 = document.getElementById("task3").value;
-  const title = document.getElementById("titleCard");
+  const inputs = document.querySelectorAll(".accomplishment");
+
+  tasksContainer.innerHTML = `<div class="text-center text-3xl font-bold mb-4 text-[#00ff00]" id="header">Day ${day}</div>`;
+
+  inputs.forEach((input, index) => {
+    const p = document.createElement("p");
+    p.textContent = `${index + 1}. ${input.value}`;
+    tasksContainer.appendChild(p);
+  });
 
   title.innerHTML = "100 Days of Locked In";
-
-  header.innerHTML = `Day ${day}`;
   drawPie(day);
-  taskLine1.textContent = `1. ${task1}`;
-  taskLine2.textContent = `2. ${task2}`;
-  taskLine3.textContent = `3. ${task3}`;
+
   quoteBox.textContent = `"${
     quotes[Math.floor(Math.random() * quotes.length)]
   }"`;
+});
+
+document.getElementById("addBtn").addEventListener("click", () => {
+  const count = document.querySelectorAll(".accomplishment").length + 1;
+  const wrapper = document.createElement("div");
+
+  wrapper.innerHTML = `
+    <label class="block text-sm text-neutral-400 mb-1">Accomplishment #${count}</label>
+    <input type="text" class="accomplishment w-full p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Another thing you achieved" required />
+  `;
+
+  extraContainer.appendChild(wrapper);
 });
 
 document.getElementById("downloadBtn").addEventListener("click", () => {
@@ -65,6 +79,7 @@ document.getElementById("downloadBtn").addEventListener("click", () => {
     link.href = canvas.toDataURL();
     link.click();
   });
+
   gtag("event", "download_button_click", {
     event_category: "engagement",
     event_label: "Download as PNG Button",
