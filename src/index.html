@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-neutral-900 text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LockedIn</title>
+  <link href="https://cdn.jsdelivr.net/npm/@geist-ui/font@latest/GeistSansMono.css" rel="stylesheet" />
+    <link rel="preload" href="/fonts/GeistSansMono-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+  <link href="./output.css" rel="stylesheet" />
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen px-4 py-6">
+
+  <header class="mb-8 text-center">
+    <h1 class="text-5xl font-extrabold tracking-wide text-neutral-100 mb-2">100 Days of LockedIn</h1>
+    <p class="text-neutral-400 max-w-md mx-auto">Track your daily progress, reflect on your wins, and save the moment as a shareable card.</p>
+  </header>
+
+  <form id="form" class="bg-neutral-800 p-6 rounded-lg w-full max-w-xl space-y-4 mb-10 shadow-md">
+    <div>
+      <label for="day" class="block text-sm text-neutral-400 mb-1">Day Number</label>
+      <input type="number" id="day" placeholder="e.g., 21" class="w-full p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-green-500" required />
+    </div>
+
+    <div>
+      <label for="task1" class="block text-sm text-neutral-400 mb-1">Accomplishment #1</label>
+      <input type="text" id="task1" placeholder="What did you achieve today?" class="w-full p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-green-500" required />
+    </div>
+
+    <div>
+      <label for="task2" class="block text-sm text-neutral-400 mb-1">Accomplishment #2</label>
+      <input type="text" id="task2" placeholder="Any other win?" class="w-full p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-green-500" required />
+    </div>
+
+    <div>
+      <label for="task3" class="block text-sm text-neutral-400 mb-1">Accomplishment #3</label>
+      <input type="text" id="task3" placeholder="Something else you did?" class="w-full p-3 rounded bg-neutral-900 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-green-500" required />
+    </div>
+
+    <button type="submit" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded transition-all">Generate Card</button>
+  </form>
+
+  <div id="card" class="bg-neutral-950 p-6  max-w-2xl w-full text-neutral-300 shadow-lg hidden">
+    <h1 id='titleCard' class="text-4xl font-bold mb-6 text-white w-full text-center">
+    </h1>
+    <div class="flex flex-col sm:flex-row items-center justify-around">
+        <canvas id="pie" width="160" height="160" class="bg-neutral-800 rounded-full mb-4 sm:mb-0"></canvas>
+        <div class="text-left sm:ml-6 space-y-2 text-lg">
+            <div class="text-center text-3xl font-bold mb-4 text-[#00ff00]" id="header"></div>
+            <p id="taskLine1"></p>
+            <p id="taskLine2"></p>
+            <p id="taskLine3"></p>
+        </div>
+    </div>
+    <hr class="my-4 border-neutral-700">
+    <blockquote class="italic text-center text-neutral-400" id="quote">"</blockquote>
+    <p class="text-right mt-2 text-white font-bold">– Naval</p>
+  </div>
+
+  <button id="downloadBtn" class="mt-6 bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded text-white font-semibold transition-all hidden">Download as PNG</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

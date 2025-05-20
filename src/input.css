@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    @apply bg-black text-white;
+  }
+}
+
+body {
+  font-family: 'Geist Sans Mono', monospace, sans-serif;
+}
